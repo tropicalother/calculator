@@ -1,0 +1,63 @@
+div {
+    font-size: 50px;
+    display: flex;
+    border-radius: 5px;
+    border-color: black;
+}
+
+#textBox    {
+    font-size: 24px;
+    background-color: white;
+    flex: 0 0 50%;
+    height: 100%;
+    text-align: right;
+    word-wrap: break-word;
+}
+
+#showWork   {
+    font-size: 12px;
+    background-color: white;
+    flex: 0 0 50%
+    height: 50%;
+    text-align: right;    
+}
+
+#opColumn   {
+    flex-direction: column;
+    width: 80px;
+}
+
+.pressMe {
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background-color: gray;
+    border: 4px black;
+    flex-shrink: 0;
+}
+
+.row    {
+    flex-direction: row;
+}
+
+.column    {
+    gap: 5px;
+    flex-direction: column;
+}
+
+.bigRectangle   {
+    width: 350px;
+    height: 420px;
+
+    flex-wrap: wrap;
+    background-color: blue;
+}
+
+.midContainer  {
+    width: 350px;
+    height: 320px;
+    flex-wrap: wrap;
+    background-color: blue;
+    gap: 5px;
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="displayContainer"></div>
+</body>
+
+<script>
+    let displayNum = ''
+    let calcNum = ''
+    let calcOp = ''
+
+    const displayContainer = document.querySelector('div')
+    displayContainer.classList.add('bigRectangle')
+    displayContainer.classList.add('column')
+
+    const midContainer = document.createElement('div')
+    midContainer.classList.add('midContainer')
+
+    const press1 = document.createElement('div')
+    const press2 = document.createElement('div')
+    const press3 = document.createElement('div')
+    const press4 = document.createElement('div')
+    const press5 = document.createElement('div')
+    const press6 = document.createElement('div')
+    const press7 = document.createElement('div')
+    const press8 = document.createElement('div')
+    const press9 = document.createElement('div')
+    const press0 = document.createElement('div')
+
+    press1.classList.add('pressMe')
+    press2.classList.add('pressMe')
+    press3.classList.add('pressMe')
+    press4.classList.add('pressMe')
+    press5.classList.add('pressMe')
+    press6.classList.add('pressMe')
+    press7.classList.add('pressMe')
+    press8.classList.add('pressMe')
+    press9.classList.add('pressMe')
+    press0.classList.add('pressMe')
+
+    press1.textContent = '1'
+    press2.textContent = '2'
+    press3.textContent = '3'
+    press4.textContent = '4'
+    press5.textContent = '5'
+    press6.textContent = '6'
+    press7.textContent = '7'
+    press8.textContent = '8'
+    press9.textContent = '9'
+    press0.textContent = '0'
+
+    press1.addEventListener('click', function() {
+        inputNum('1')
+    })
+    press2.addEventListener('click', function() {
+        inputNum('2')
+    })
+    press3.addEventListener('click', function() {
+        inputNum('3')
+    })
+    press4.addEventListener('click', function() {
+        inputNum('4')
+    })
+    press5.addEventListener('click', function() {
+        inputNum('5')
+    })
+    press6.addEventListener('click', function() {
+        inputNum('6')
+    })
+    press7.addEventListener('click', function() {
+        inputNum('7')
+    })
+    press8.addEventListener('click', function() {
+        inputNum('8')
+    })
+    press9.addEventListener('click', function() {
+        inputNum('9')
+    })
+    press0.addEventListener('click', function() {
+        inputNum('0')
+    })
+
+    const pressPlus = document.createElement('div')
+    const pressMinus = document.createElement('div')
+    const pressMultiply = document.createElement('div')
+    const pressDivide = document.createElement('div')
+    const pressClear = document.createElement('div')
+    const pressDecimal = document.createElement('div')
+    const pressEqual = document.createElement('div')
+    
+    pressPlus.addEventListener('click', function() {
+        if ((!calcNum == '') && (!calcOp == ''))
+            inputEqual()
+        inputhMath('+')
+    })
+    pressMinus.addEventListener('click', function() {
+        if ((!calcNum == '') && (!calcOp == ''))
+            inputEqual()
+        inputhMath('-')
+    })
+    pressMultiply.addEventListener('click', function() {
+        if ((!calcNum == '') && (!calcOp == ''))
+            inputEqual()
+        inputhMath('*')
+    })
+    pressDivide.addEventListener('click', function() {
+        if ((!calcNum == '') && (!calcOp == ''))
+            inputEqual()
+        inputhMath('/')
+    })
+
+    pressEqual.addEventListener('click', function() {
+        inputEqual()
+    })
+
+    pressDecimal.addEventListener('click', function() {
+        inputNum('.')
+    })
+
+    pressPlus.classList.add('pressMe')
+    pressMinus.classList.add('pressMe')
+    pressMultiply.classList.add('pressMe')
+    pressDivide.classList.add('pressMe')
+    pressClear.classList.add('pressMe')
+    pressDecimal.classList.add('pressMe')
+    pressEqual.classList.add('pressMe')
+
+    const workOp = document.createElement('div')
+    const workNum = document.createElement('div')
+    const textBox = document.createElement('div')
+    textBox.setAttribute('id', 'textBox')
+    workNum.setAttribute('id', 'showWork')
+    workOp.setAttribute('id', 'showWork')
+
+    const row0 = document.createElement('div')
+    const opColumn = document.createElement('div')
+    const column1 = document.createElement('div')
+    const column2 = document.createElement('div')
+    const column3 = document.createElement('div')
+    const column4 = document.createElement('div')
+
+    opColumn.setAttribute('id', 'opColumn')
+
+    row0.classList.add('row')
+    column1.classList.add('column')
+    column2.classList.add('column')
+    column3.classList.add('column')
+    column4.classList.add('column')
+
+    pressPlus.textContent = '+'
+    pressMinus.textContent = '-'
+    pressMultiply.textContent = '*'
+    pressDivide.textContent = '/'
+    pressClear.textContent = 'AC'
+    pressEqual.textContent = '='
+    pressDecimal.textContent = '.'
+
+    pressClear.addEventListener('click', function() {
+        clear()
+    })
+
+    opColumn.append(workNum, workOp)
+    row0.append(opColumn, textBox, pressClear)
+    column1.append(press1, press4, press7, pressDecimal)
+    column2.append(press2, press5, press8, press0)
+    column3.append(press3, press6, press9, pressEqual)
+    column4.append(pressPlus, pressMinus, pressMultiply, pressDivide)
+
+    midContainer.append(column1, column2, column3, column4)
+    displayContainer.append(row0, midContainer)
+
+    function updateDisplay()
+    {
+        textBox.textContent = displayNum
+        workNum.textContent = calcNum
+        workOp.textContent = calcOp
+    }
+
+    function clear()
+    {
+        displayNum = ''
+        calcNum = ''
+        calcOp = ''
+        updateDisplay()
+    }
+
+    function inputNum(pressNumber)
+    {
+        displayNum += pressNumber
+        updateDisplay()
+    }
+
+    function inputhMath(pressOperator)
+    {
+        calcNum = displayNum
+        calcOp = pressOperator
+        displayNum = ''
+        updateDisplay()
+    }
+
+    function inputEqual()
+    {
+    if(!(displayNum == '') && !(calcNum == '') & !(calcOp == ''))
+        {
+        switch (calcOp)    {
+            case '+':
+                displayNum = add(calcNum, displayNum)
+                break
+            case '-':
+                displayNum = subtract(calcNum, displayNum)
+                break
+            case '*':
+                displayNum = multiply(calcNum, displayNum)
+                break
+            case '/':
+                displayNum = divide(calcNum, displayNum)
+                break
+        }
+        calcNum = ''
+        calcOp = ''
+        updateDisplay()
+        }
+    }
+
+    function add(num1, num2)
+    {
+        return parseFloat(num1)+parseFloat(num2)
+    }
+
+    function subtract(num1, num2)
+    {
+        return (parseFloat(num1))-(parseFloat(num2))
+    }
+
+    function multiply(num1, num2)
+    {
+        return (parseFloat(num1))*(parseFloat(num2))
+    }
+
+    function divide(num1, num2)
+    {
+        if (displayNum == 0)
+            {
+                displayNum == calcNum
+                calcNum == ''
+                calcOp == ''
+                updateDisplay()
+            }
+        else
+            return (parseFloat(num1))/(parseFloat(num2)).toFixed(5)
+    }
+
+    function operate(operator, num1, num2)
+    {
+        if(operator == '+')
+            return(add(num1, num2))
+        if(operator == '-')
+            return(subtract(num1, num2))
+        if(operator == '*')
+            return(multiply(num1, num2))
+        if(operator == '/')
+            return(divide(num1, num2))
+    }
+
+console.log(operate('+', 5, 10))
+console.log(operate('-', 5, 10))
+console.log(operate('*', 5, 10))
+console.log(operate('/', 5, 10))
+
+
+</script>
+</html>
